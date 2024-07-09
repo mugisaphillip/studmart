@@ -1,0 +1,61 @@
+.btn {
+    box-shadow: 5px 5px 1px rgba(22, 8, 8, 0.5);   
+}
+.btn.with-drop {
+    box-shadow: 5px 5px 0px rgba(3, 7, 18, 0.863);
+    transition: all .3s ease-in-out;
+}
+.btn.with-drop:hover {
+    box-shadow: 7px 7px 0px rgba(3, 7, 18, 0.863);
+}
+.institution-card {
+    display: grid;
+}
+.institution-card .img-wrapper {
+    display: grid;
+    inline-size: 8vw;
+}
+.institution-card .img-wrapper img {
+    inline-size: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.horizontal-scroller {
+    display: grid;
+    grid-template-columns: 0.15fr 6fr 0.15fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+.horizontal-scroller .scroll-area {
+    padding: .5rem;
+    width: 87vw;
+    overflow: hidden;
+    overflow-x: auto;
+    justify-items: flex-start;
+    justify-content: flex-start;
+
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scroll-padding-inline: 1rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.horizontal-scroller .scroll-area::-webkit-scrollbar {
+    display: none;
+}
+.horizontal-scroller .scroll-area > * {
+    scroll-snap-align: start;
+}
+
+.business-card {
+    inline-size: 15vw;
+}
+
+.business-card .img-wrapper img {
+    inline-size: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}

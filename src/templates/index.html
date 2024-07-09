@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../static/styles/tailcss.css">
+    <link rel="stylesheet" href="../static/styles/main.css">
+    <link rel="stylesheet" href="../static/icons/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body class="font-mono">
+    <header class="grid bg-gray-950 py-2 justify-items-center w-full">
+        <nav class="grid gap-6 items-center w-11/12" style="grid-template-columns: 2fr 4fr 2fr;">
+            <div class="grid gap-4 grid-flow-col justify-start">
+                <a href="" class="text-slate-50 text-2xl font-bold">studMart</a>
+                <a href="" class="py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Businesses</a>
+                <a href="" class="py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Products</a>
+            </div>
+            <div class="grid">
+                <form action="" method="post" class="w-full overflow-hidden rounded grid bg-red-400">
+                    <input type="text" class="w-full py-1 px-4 text-gray-950" placeholder="Search for something ... ">
+                </form>
+            </div>
+            <div class="grid gap-2 grid-flow-col justify-end">
+                <a href="" class="p-4 grid text-slate-50"><i class="fa fa-shopping-cart"></i></a>
+                <a href="" class="p-4 grid text-slate-50"><i class="fa fa-user"></i></a>
+            </div>
+        </nav>
+    </header>
+    <main class="bg-white grid justify-items-center gap-6 py-5">
+
+        <section class="w-11/12 grid gap-4">
+            <div class="grid">
+                <h3 class="text-gray-950 text-xl font-semibold">Institutions</h3>
+            </div>
+            <div class="grid horizontal-scroller">
+                <button><i class="fa fa-arrow-left"></i></button>
+                <div class="scroll-area grid grid-flow-col justify-start gap-6">
+                    <a class="grid" href="">
+                        <article class="institution-card grid justify-items-center">
+                            <div class="img-wrapper">
+                               <img src="../static/images/institutions/mak.jpeg" alt=""> 
+                            </div>
+                            <div class="grid">
+                                <h4 class="font-semibold">Makerere</h4>
+                            </div>
+                        </article>
+                    </a>
+                    <a class="grid" href="">
+                        <article class="institution-card grid justify-items-center">
+                            <div class="img-wrapper">
+                                <img src="../static/images/institutions/kyu.jpg" alt="">  
+                            </div>
+                            <div class="grid">
+                                <h4 class="font-semibold">Kyambogo</h4>
+                            </div>
+                        </article>
+                    </a>
+                    <a class="grid" href="">
+                        <article class="institution-card grid justify-items-center">
+                            <div class="img-wrapper">
+                                <img src="../static/images/institutions/mubs.jpeg" alt="">
+                            </div>
+                            <div class="grid">
+                                <h4 class="font-semibold">Mubs</h4>
+                            </div>
+                        </article>
+                    </a>
+                    <a class="grid" href="">
+                        <article class="institution-card grid justify-items-center">
+                            <div class="img-wrapper">
+                                <img src="../static/images/institutions/must.jpeg" alt="">
+                            </div>
+                            <div class="grid">
+                                <h4 class="font-semibold">MUST</h4>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+                <button><i class="fa fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section class="w-11/12 grid gap-4">
+            <div class="grid">
+                <h3 class="text-gray-950 text-xl font-semibold">Businesses</h3>
+            </div>
+            <div class="filters mb-4 grid grid-flow-col justify-start gap-4 items-center">
+                <h3 class="font-semibold text-base">Sort by category:</h3>
+                <div class="grid grid-flow-col gap-4">
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Shoes</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Phones and Accessories</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">clothes</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Stationery</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">More</button>
+                </div>
+            </div>
+            <div class="grid horizontal-scroller">
+                <button><i class="fa fa-arrow-left"></i></button>
+                <div class="scroll-area grid grid-flow-col justify-start gap-6">
+                    <article class="business-card grid gap-2 relative">
+                        <div class="img-wrapper">
+                            <a href="">
+                                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300" alt=""> 
+                            </a>
+                        </div>
+                        <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                            <div class="grid">
+                                <h4 class="text-lg font-semibold">
+                                    <a href="">Stono</a>
+                                </h4>
+                                <p class="">Shoes</p>
+                            </div>
+                            <a href=""><i class="fa fa-star"></i></a>
+                        </div>
+                    </article>
+                    <article class="business-card grid gap-2 relative">
+                        <div class="img-wrapper">
+                            <a href="">
+                                <img src="https://images.unsplash.com/photo-1566060475410-1159300f046f?w=300" alt=""> 
+                            </a>
+                        </div>
+                        <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                            <div class="grid">
+                                <h4 class="text-lg font-semibold">
+                                    <a href="">Fermo</a>
+                                </h4>
+                                <p class="">Electronics</p>
+                            </div>
+                            <a href=""><i class="fa fa-star"></i></a>
+                        </div>
+                    </article>
+                    <article class="business-card grid gap-2 relative">
+                        <div class="img-wrapper">
+                            <a href="">
+                                <img src="https://images.unsplash.com/photo-1631173716529-fd1696a807b0?w=300" alt=""> 
+                            </a>
+                        </div>
+                        <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                            <div class="grid">
+                                <h4 class="text-lg font-semibold">
+                                    <a href="">Elegant Writes</a>
+                                </h4>
+                                <p class="">Stationery</p>
+                            </div>
+                            <a href=""><i class="fa fa-star"></i></a>
+                        </div>
+                    </article>
+                    <article class="business-card grid gap-2 relative">
+                        <div class="img-wrapper">
+                            <a href="">
+                                <img src="https://images.unsplash.com/photo-1580657018950-c7f7d6a6d990?w=300" alt=""> 
+                            </a>
+                        </div>
+                        <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                            <div class="grid">
+                                <h4 class="text-lg font-semibold">
+                                    <a href="">Njuvo Ya Mungu</a>
+                                </h4>
+                                <p class="">clothes</p>
+                            </div>
+                            <a href=""><i class="fa fa-star"></i></a>
+                        </div>
+                    </article>
+                    <article class="business-card grid gap-2 relative">
+                        <div class="img-wrapper">
+                            <a href="">
+                                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300" alt=""> 
+                            </a>
+                        </div>
+                        <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                            <div class="grid">
+                                <h4 class="text-lg font-semibold">
+                                    <a href="">Stono</a>
+                                </h4>
+                                <p class="">Shoes</p>
+                            </div>
+                            <a href=""><i class="fa fa-star"></i></a>
+                        </div>
+                    </article>
+                    <article class="business-card grid gap-2 relative">
+                        <div class="img-wrapper">
+                            <a href="">
+                                <img src="https://images.unsplash.com/photo-1566060475410-1159300f046f?w=300" alt=""> 
+                            </a>
+                        </div>
+                        <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                            <div class="grid">
+                                <h4 class="text-lg font-semibold">
+                                    <a href="">Fermo</a>
+                                </h4>
+                                <p class="">Electronics</p>
+                            </div>
+                            <a href=""><i class="fa fa-star"></i></a>
+                        </div>
+                    </article>
+                </div>
+                <button><i class="fa fa-arrow-right"></i></button>
+            </div>
+        </section>
+
+        <section class="w-11/12 grid gap-4">
+            <div class="grid">
+                <h3 class="text-gray-950 text-xl font-semibold">Shop With Us</h3>
+            </div>
+            <div class="filters mb-4 grid grid-flow-col justify-start gap-4 items-center">
+                <h3 class="font-semibold text-base">Sort by category:</h3>
+                <div class="grid grid-flow-col gap-4">
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Shoes</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Phones and Accessories</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">clothes</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Jewelry</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Make up</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Stationery</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">More</button>
+                </div>
+            </div>
+            <div class="shop-grid grid grid-cols-5 justify-start gap-6">
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-lg font-semibold">
+                                <a href="">Air Force</a>
+                            </h4>
+                            <p class="">UGX 150000</p>
+                            <a href="" class="">Mak</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://plus.unsplash.com/premium_photo-1675016457613-2291390d1bf6?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-base font-semibold">
+                                <a href="">CCTV installation</a>
+                            </h4>
+                            <p class="">UGX 2000000</p>
+                            <a href="" class="">Mak</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://images.unsplash.com/photo-1580568287125-ae9bad4f0eef?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-base font-semibold">
+                                <a href="">Suit Rental</a>
+                            </h4>
+                            <p class="">UGX 300000</p>
+                            <a href="" class="">Mak</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://images.unsplash.com/photo-1622336889416-8d790ad807d7?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-base font-semibold">
+                                <a href="">Make Up Services</a>
+                            </h4>
+                            <p class="">UGX 100000</p>
+                            <a href="" class="">Mubs</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://plus.unsplash.com/premium_photo-1678304223645-e79b0c863867?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-base font-semibold">
+                                <a href="">Washing Services</a>
+                            </h4>
+                            <p class="">UGX 10000</p>
+                            <a href="" class="">KYU</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://plus.unsplash.com/premium_photo-1678304223645-e79b0c863867?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-base font-semibold">
+                                <a href="">Washing Services</a>
+                            </h4>
+                            <p class="">UGX 10000</p>
+                            <a href="" class="">KYU</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://images.unsplash.com/photo-1622336889416-8d790ad807d7?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-base font-semibold">
+                                <a href="">Make Up Services</a>
+                            </h4>
+                            <p class="">UGX 100000</p>
+                            <a href="" class="">Mubs</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://images.unsplash.com/photo-1580568287125-ae9bad4f0eef?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-base font-semibold">
+                                <a href="">Suit Rental</a>
+                            </h4>
+                            <p class="">UGX 300000</p>
+                            <a href="" class="">Mak</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://plus.unsplash.com/premium_photo-1675016457613-2291390d1bf6?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-base font-semibold">
+                                <a href="">CCTV installation</a>
+                            </h4>
+                            <p class="">UGX 2000000</p>
+                            <a href="" class="">Mak</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+                <article class="business-card grid gap-2 relative">
+                    <div class="img-wrapper">
+                        <a href="">
+                            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=300" alt=""> 
+                        </a>
+                    </div>
+                    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+                        <div class="grid">
+                            <h4 class="text-lg font-semibold">
+                                <a href="">Air Force</a>
+                            </h4>
+                            <p class="">UGX 150000</p>
+                            <a href="" class="">Mak</p>
+                        </div>
+                        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+    <footer></footer>
+</body>
+</html>
