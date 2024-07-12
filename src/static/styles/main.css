@@ -23,7 +23,8 @@
 
 .horizontal-scroller {
     display: grid;
-    grid-template-columns: 0.15fr 6fr 0.15fr;
+    grid-template-columns: 1fr;
+    /* grid-template-columns: 0.15fr 6fr 0.15fr; */
     gap: 1rem;
     align-items: center;
 }
@@ -50,12 +51,104 @@
     scroll-snap-align: start;
 }
 
+
+.product-card,
 .business-card {
     inline-size: 15vw;
 }
 
+.product-card .img-wrapper img,
 .business-card .img-wrapper img {
     inline-size: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+}
+
+.product_details {
+    margin-bottom: 2.5rem;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.product_details .img-area {
+    display: grid;
+    /* grid-template-columns: 0.35fr 2fr; */
+    gap: 0;
+}
+
+.product_details .preview-img {
+    height: 70vh;
+    overflow: hidden;
+}
+
+.preview-img img {
+    object-fit: contain;
+    block-size: inherit;
+    /* object-fit: 2; */
+}
+
+.product_details .img-list {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0.5rem;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+
+.product_details .img-list img {
+    aspect-ratio: 1;
+    height: 10vh;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+    border: 2px solid transparent;
+}
+
+.product_details .img-list img.active {
+    border-color: #030712;
+    padding: 2px;
+}
+
+.product_details .img-wrapper img {
+    block-size: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+
+@media screen and (max-width: 900px) {
+    .institution-card .img-wrapper {
+        display: grid;
+        inline-size: 15vw;
+    }
+    .product-card {
+        inline-size: 90vw;
+    }
+    
+    .business-card {
+        inline-size: 50vw;
+    }
+
+    .product_details {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .product_details .img-list {
+        grid-auto-flow: dense;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .product_details .img-list img {
+        height: 15vh;
+    }
+
+    .filters {
+        width: 90vw;
+        overflow: hidden;
+        grid-auto-flow: row;
+    }
+    .filters > div {
+        width: 90vw;
+        overflow-x: auto;
+        align-items: flex-start;
+    }
 }
