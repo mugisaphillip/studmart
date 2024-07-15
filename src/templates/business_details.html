@@ -30,34 +30,28 @@
     </header>
     <main class="bg-white grid justify-items-center gap-6 py-5">
         
-        <section class="w-11/12 product_details grid gap-6 justify-start">
+        <section class="w-11/12 business_details grid gap-4 justify-start">
             <div class="img-area">
-                <div class="preview-img grid">
+                <div class="preview-img grid ">
                     <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=500" alt="">
                 </div>
             </div>
             <div class="details grid gap-4 content-start">
-                <h1 class="text-gray-950 text-xl font-bold">Product Name</h1>
+                <h1 class="text-gray-950 text-xl font-bold">Business Name</h1>
                 <p class="text-gray-900">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore alias incidunt inventore rem ratione dignissimos. Soluta error voluptate nostrum culpa!</p>
-                <p class="grid items-baseline grid-flow-col justify-start gap-2">
-                    <span class="text-xl">UGX</span>
-                    <span class="text-3xl">200000</span>
+                <p class="categories grid grid-flow-col justify-start gap-2">
+                    <a href="" class="text-sm bg-gray-950 hover:bg-gray-900 transition-colors duration-200 ease-in-out text-slate-50 px-4 py-2">Shoes</a>
+                    <a href="" class="text-sm bg-gray-950 hover:bg-gray-900 transition-colors duration-200 ease-in-out text-slate-50 px-4 py-2">Shoes</a>
                 </p>
-                
-                <div class="img-list">
-                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500" alt="" class="active">
-                    <img src="https://images.unsplash.com/photo-1608667508764-33cf0726b13a?w=500" alt="">
-                    <img src="https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=500" alt="">
-                </div>
                 <div class="grid grid-flow-col justify-start">
-                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Add to Cart</button>
+                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Add to favorites</button>
                 </div>
             </div>
         </section>
         
         <section class="w-11/12 grid gap-4">
             <div class="grid">
-                <h3 class="text-gray-950 text-xl font-semibold">Related Products</h3>
+                <h3 class="text-gray-950 text-xl font-semibold">Businesses Products</h3>
             </div>
             <div class="shop-grid grid lg:grid-cols-5 grid-cols-1 justify-start gap-6">
                 <article class="product-card grid gap-2 relative">
@@ -151,14 +145,4 @@
     </main>
     <footer></footer>
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const preview_img = document.querySelector(".product_details .preview-img img")
-        document.querySelectorAll(".product_details .img-list img").forEach(img => img.addEventListener("click", () => {
-            preview_img.src = img.src;
-            img.parentElement.querySelector(".active").classList.remove("active")
-            img.classList.add("active")
-        }))
-    })
-</script>
 </html>

@@ -57,6 +57,8 @@
     inline-size: 15vw;
 }
 
+.business_details .preview-img img,
+.product_details .preview-img img,
 .product-card .img-wrapper img,
 .business-card .img-wrapper img {
     inline-size: 100%;
@@ -68,24 +70,7 @@
     margin-bottom: 2.5rem;
     overflow: hidden;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.product_details .img-area {
-    display: grid;
-    /* grid-template-columns: 0.35fr 2fr; */
-    gap: 0;
-}
-
-.product_details .preview-img {
-    height: 70vh;
-    overflow: hidden;
-}
-
-.preview-img img {
-    object-fit: contain;
-    block-size: inherit;
-    /* object-fit: 2; */
+    grid-template-columns: .5fr 1fr;
 }
 
 .product_details .img-list {
@@ -98,6 +83,7 @@
 
 .product_details .img-list img {
     aspect-ratio: 1;
+    object-fit: cover;
     height: 10vh;
     cursor: pointer;
     transition: all .3s ease-in-out;
@@ -109,12 +95,11 @@
     padding: 2px;
 }
 
-.product_details .img-wrapper img {
-    block-size: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
+.business_details {
+    display: grid;
+    grid-template-columns: 0.25fr 1fr;
+    justify-content: flex-start;
 }
-
 
 @media screen and (max-width: 900px) {
     .institution-card .img-wrapper {
@@ -150,5 +135,10 @@
         width: 90vw;
         overflow-x: auto;
         align-items: flex-start;
+    }
+    .business_details {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: flex-start;
     }
 }
