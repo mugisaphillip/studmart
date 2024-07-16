@@ -1,0 +1,38 @@
+{% extends '../utils/layout.html' %}
+{% load static %}
+{% block content %}
+<main class="bg-white grid justify-items-center gap-6 py-5">
+    
+    <section class="w-11/12 business_details grid gap-4 justify-start">
+        <div class="img-area">
+            <div class="preview-img grid ">
+                <img src="/media/{{ business.business.image }}" alt="">
+            </div>
+        </div>
+        <div class="details grid gap-4 content-start">
+            <h1 class="text-gray-950 text-xl font-bold">{{ business.business.name }}</h1>
+            <p class="text-gray-900">{{ business.business.description }}</p>
+            <p class="categories grid grid-flow-col justify-start gap-2">
+                {% for category in business.categories %}
+                <a href="{% url 'shop:business-list' %}?category={{category.name}}" class="text-sm bg-gray-950 hover:bg-gray-900 transition-colors duration-200 ease-in-out text-slate-50 px-4 py-2">{{ category.name }}</a>
+                {% endfor %}
+            </p>
+            <div class="grid grid-flow-col justify-start">
+                <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Add to favorites</button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="w-11/12 grid gap-4">
+        <div class="grid">
+            <h3 class="text-gray-950 text-xl font-semibold">{{ business.business.name }} Products</h3>
+        </div>
+        <div class="shop-grid grid lg:grid-cols-5 grid-cols-1 justify-start gap-6">
+            {% for product in products %}
+            {% include "./utils/product_card.html" with product=product %}
+            {% endfor %}
+        </div>
+    </section>
+
+</main>
+{% endblock %}

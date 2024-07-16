@@ -1,0 +1,22 @@
+{% load static%}
+{% block content %}
+<article class="product-card grid gap-2 relative">
+    <div class="img-wrapper">
+        <a href="{% url 'shop:product-details' product.product.slug %}">
+            {% for image in product.images %}
+            <img src="/media/{{image.image}}" alt="">
+            {% endfor %}
+        </a>
+    </div>
+    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+        <div class="grid">
+            <h4 class="text-base font-semibold">
+                <a href="{% url 'shop:product-details' product.product.slug %}">{{product.product.name}}</a>
+            </h4>
+            <p class="">UGX {{product.product.price}}</p>
+            <a href="" class="" class="text-sm">{{product.product.category.name}}</p>
+        </div>
+        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+    </div>
+</article>
+{% endblock %}

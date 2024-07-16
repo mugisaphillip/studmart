@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'styles/tailcss.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'icons/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+</head>
+<body class="font-mono">
+    <header class="grid bg-gray-950 py-2 justify-items-center w-full">
+        <nav class="grid gap-6 items-center w-11/12" style="grid-template-columns: 2fr 4fr 2fr;">
+            <div class="grid gap-4 grid-flow-col justify-start">
+                <a href="{% url 'shop:home' %}" class="text-slate-50 text-2xl font-bold">studMart</a>
+                <a href="{% url 'shop:business-list' %}" class="py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Businesses</a>
+                <a href="{% url 'shop:product-list' %}" class="py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Products</a>
+            </div>
+            <div class="grid">
+                <form action="{% url 'shop:product-list' %}" method="get" class="w-full overflow-hidden rounded grid">
+                    <input type="text" class="w-full py-1 px-4 text-gray-950" placeholder="Search for something ... " name="search">
+                </form>
+            </div>
+            <div class="grid gap-2 grid-flow-col justify-end">
+                <a href="" class="p-4 grid text-slate-50"><i class="fa fa-shopping-cart"></i></a>
+                <a href="" class="p-4 grid text-slate-50"><i class="fa fa-user"></i></a>
+            </div>
+        </nav>
+    </header>
+    
+    {% block content %}
+    {% endblock %}
+
+    <footer></footer>
+    <script src="{% static 'js/scripts.js' %}"></script>
+</body>
+</html>

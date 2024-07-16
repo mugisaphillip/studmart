@@ -1,0 +1,19 @@
+{% load static%}
+{% block content %}
+<article class="business-card grid gap-2 relative content-start">
+    <div class="img-wrapper">
+        <a href="{% url 'shop:business-details' business.business.slug %}">
+            <img src="/media/{{business.business.image}}" alt=""> 
+        </a>
+    </div>
+    <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
+        <div class="grid">
+            <h4 class="text-lg font-semibold">
+                <a href="{% url 'shop:business-details' business.business.slug %}">{{business.business.name}}</a>
+            </h4>
+            <p class="">{{business.categories.0.name}}</p>
+        </div>
+        <a href=""><i class="fa fa-star"></i></a>
+    </div>
+</article>
+{% endblock %}

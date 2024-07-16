@@ -1,0 +1,13 @@
+{% extends '../utils/layout.html' %}
+{% load static %}
+{% block content %}
+    <main class="bg-white grid justify-items-center gap-6 py-5">
+        
+        <section class="w-11/12 grid gap-4 justify-items-center" style="height: 80vh;align-content: center;text-align: center;">
+            <h2 class="text-gray-950 text-xl">Response Not Found (Error-404)</h2>
+            <p class="text-gray-900">The resource you are looking for could not be found.</p>
+            <a href="{% url 'shop:home' %}" class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Return Home</a>
+        </section>
+
+    </main>
+{% endblock %}
