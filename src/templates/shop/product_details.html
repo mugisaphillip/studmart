@@ -16,8 +16,10 @@
                     <span class="text-xl">UGX</span>
                     <span class="text-3xl">{{ product.product.price }}</span>
                 </p>
-                
-                <a href="{% url 'shop:product-list' %}?category={{product.product.category.name}}" class="text-sm bg-gray-950 hover:bg-gray-900 transition-colors duration-200 ease-in-out text-slate-50 px-4 py-2" style="justify-self: flex-start;">{{ product.product.category.name }}</a>
+                <div class="grid grid-flow-col justify-start gap-2">
+                    <a href="{% url 'shop:business-details' product.product.business.slug %}" class="text-sm bg-gray-950 hover:bg-gray-900 transition-colors duration-200 ease-in-out text-slate-50 px-4 py-2" style="justify-self: flex-start;">{{ product.product.business.name }}</a>
+                    <a href="{% url 'shop:product-list' %}?category={{product.product.category.name}}" class="text-sm bg-gray-950 hover:bg-gray-900 transition-colors duration-200 ease-in-out text-slate-50 px-4 py-2" style="justify-self: flex-start;">{{ product.product.category.name }}</a>
+                </div>
                 
                 <div class="img-list">
                     {% for image in product.images %}
@@ -29,7 +31,7 @@
                     {% endfor %}
                 </div>
                 <div class="grid grid-flow-col justify-start">
-                    <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Add to Cart</button>
+                    <a href="{% url 'shop:add-to-cart' product.product.slug %}" class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Add to Cart</a>
                 </div>
             </div>
         </section>

@@ -1,0 +1,60 @@
+{% extends '../utils/layout.html' %}
+{% load static %}
+{% block content %}
+<main class="bg-white grid justify-items-center gap-6 py-5">
+
+    <section class="w-11/12 grid gap-6">
+        <div class="grid grid-flow-col justify-between items-center gap-4">
+            <h3 class="text-gray-950 text-xl font-semibold">Your Cart</h3>
+            <span>Total: UGX {{ cart.total_amount }}</span>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3 sm:grid-cols-1">
+            {% if cart_products %}
+                {% for cart_rel in cart_products %}
+                <div class="cart-product-card">
+                    <div class="img-wrapper">
+                        <img src="/media/{{ cart_rel.image.image }}" alt="">
+                    </div>
+                    <div class="brief grid content-start py-2">
+                        <a href="{% url 'shop:product-details' cart_rel.product.product.slug %}" class="text-gray-950 text-lg font-semibold">{{ cart_rel.product.product.name }}</a>
+                        <span class="text-gray-950">UGX {{ cart_rel.product.total_amount }}</span>
+                        <span class="text-gray-950">{{ cart_rel.product.quantity }} Piece(s)</span>
+                        <a href="" class="grid grid-flow-col gap-2 text-red-700 justify-start">
+                            <span><i class="fa fa-trash"></i></span>
+                            <span>Remove</span>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No product in cart</p>
+            {% endif %}
+        </div>
+        {% if cart_products %}
+        <a href="" class="py-2 px-4 text-base grid place-items-center text-slate-50 bg-gray-950 justify-self-start">Place order</a>
+        {% endif %}
+    </section>
+
+    <section class="w-11/12 grid gap-4">
+        <div class="grid grid-flow-col justify-between items-center gap-4">
+            <h3 class="text-gray-950 text-xl font-semibold">Your Current Orders</h3>
+            <span>Total: UGX 1000000</span>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3 sm:grid-cols-1">
+            <div class="cart-product-card">
+                <div class="img-wrapper">
+                    <img src="http://localhost:8000/media/ProductImage/images/Suit_Rental-e60e5dc7-5fa8-4f43-8f74-53ef0031285f.jpg" alt="">
+                </div>
+                <div class="brief grid content-start">
+                    <h3 class="text-gray-950 text-lg font-semibold">Product Name</h3>
+                    <span class="text-gray-950">5 Pieces</span>
+                    <span class="text-gray-950">UGX 400000</span>
+                    <span class="text-gray-950 text-sm">Added On: 10/3/2002</span>
+                    <span class="text-gray-950 text-sm">Status: Accepted</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

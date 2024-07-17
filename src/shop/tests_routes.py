@@ -7,7 +7,6 @@ class ShopRouteTestCase(TestCase):
     def setUp(self):
         self.client = Client()
 
-        
         user = IdentityModels.User.objects.create(
             first_name="phillip",
             surname="mugisa",

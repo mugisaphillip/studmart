@@ -1,0 +1,29 @@
+{% extends '../utils/layout.html' %}
+{% load static %}
+{% block content %}
+<main class="bg-white grid justify-items-center gap-6 py-5">
+
+    <section class="w-11/12 grid gap-4 justify-items-center">
+        <div class="bg-slate-50 grid gap-4 w-6/12 p-6 auth-area">
+            <h2 class="text-gray-950 text-xl font-bold text-center">Sell and Buy Across All Institutions</h2>
+            <hr style="border: px solid lightgray">
+            <a href="" class="grid grid-flow-col justify-center gap-2 cursor-pointer with-drop py-2 px-2 text-base place-items-center bg-white text-white" style="background-color: #4081EC;">
+                <span><i class="fa fa-google"></i></span>
+                <span>Continue With Google</span>
+            </a>
+            <div class="grid grid-flow-col items-center gap-2" style="grid-template-columns: 1fr .05fr 1fr;">
+                <span class="grid" style="border: 1px solid lightgray;"></span>
+                <span class="grid" style="color: hsl(0, 0%, 50%);">or</span>
+                <span class="grid" style="border: 1px solid lightgray;"></span>
+            </div>
+            <form action="{% url 'identity:signup' %}" method="POST" class="grid gap-4">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class="btn cursor-pointer with-drop py-2 px-2 text-base grid place-items-center text-slate-50 bg-gray-950 hover:bg-gray-900 transition-colors duration-200 ease-in-out" value="Sign up">
+            </form>
+            <a class="text-gray-950 text-sm text-center" href="{% url 'identity:login' %}">Already have an account</a>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

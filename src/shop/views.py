@@ -4,6 +4,7 @@ from django.views.generic import View
 from shop import models as ShopModels
 from identity import models as IdentityModels
 from django.db.models import Q
+from django.contrib import messages
 import random
 
 
@@ -196,3 +197,73 @@ class BusinessDetailView(View):
                 )(list(ShopModels.Product.objects.filter(business=business).order_by("-id")))[:10]
         ]
         return render(request, template_name=self.template_name, context=self.context_data)
+    
+class CartView(View):
+    template_name = "shop/cart.html"
+    context_data = {}
+
+    def get(self, request):
+        # user must be logged in
+        if not request.user.is_authenticated:
+            return redirect(reverse_lazy("identity:login"))
+        
+        # if user has no cart, create a new cart
+        cart = ShopModels.Cart.objects.filter(user=request.user)
+        if not cart:
+            cart = ShopModels.Cart.objects.create(
+                user=request.user,
+                total_amount=0.0
+            )
+        else:
+            cart = cart.first()
+
+        self.context_data["cart"] = cart
+        # pass cart products
+        self.context_data["cart_products"] = [
+            {
+                "product": cart_link,
+                "image": ShopModels.ProductImage.objects.filter(product=cart_link.product).first()
+            } for cart_link in cart.cartproduct_set.all()
+        ]
+        return render(request, template_name=self.template_name, context=self.context_data)
+    
+class AddProductToCartView(View):
+    template_name = "shop/cart.html"
+    context_data = {}
+
+    def get(self, request, slug):
+
+        # user must be logged in
+        if not request.user.is_authenticated:
+            return redirect(reverse_lazy("identity:login"))
+
+        product = ShopModels.Product.objects.filter(slug=slug)
+        if not product:
+            return redirect(reverse_lazy("shop:error-page"))
+
+        product = product.first()
+
+        # get existing cart and add item
+        # if user has no cart, create a new cart
+
+        cart = ShopModels.Cart.objects.filter(user=request.user)
+        if not cart:
+            cart = ShopModels.Cart.objects.create(
+                user=request.user,
+                total_amount=0.0
+            )
+        else:
+            cart = cart.first()
+
+        # check if product is already in cart
+        if ShopModels.CartProduct.objects.filter(cart = cart,product = product):
+            messages.add_message(request, messages.ERROR, "Product is already in cart.")
+            return redirect(reverse_lazy("shop:cart"))
+
+        # add product to cart
+        ShopModels.CartProduct.objects.create(
+            cart = cart,
+            product = product
+        )
+        
+        return redirect(reverse_lazy("shop:cart"))

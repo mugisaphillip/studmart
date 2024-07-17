@@ -10,7 +10,7 @@
             <h3 class="font-semibold text-base">Sort by category:</h3>
             <div class="grid grid-flow-col gap-4 items-start">
                 {% for category in categories %}
-                <a href="{% url 'shop:product-list' %}?category={{category.name}}" class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">{{ category.name }}({{ category.product_count }})</a>
+                <a href="{% url 'shop:product-list' %}?category={{category.name}}" class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950">{{ category.name }}({{ category.product_count }})</a>
                 {% endfor %}
                 <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">More</button>
             </div>

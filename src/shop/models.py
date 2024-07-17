@@ -5,6 +5,7 @@ from django.utils import timezone
 
 import os
 import uuid
+import decimal
 
 def get_file_path(instance, filename):
     ext = filename.split(".")[-1]
@@ -122,7 +123,7 @@ class Cart(models.Model):
     product_count = models.IntegerField(verbose_name="Product count", default=0)
 
     def __str__(self) -> str:
-        return self.user
+        return self.user.username
 
     def place_order(self, *args, **kwargs):
         orders = []
@@ -148,11 +149,11 @@ class CartProduct(models.Model):
         self.total_amount = self.product.price * self.quantity
         super().save(*args, **kwargs)
         self.cart.product_count += 1
-        self.cart.total_amount += self.total_amount
+        self.cart.total_amount = decimal.Decimal(self.cart.total_amount)+ decimal.Decimal(self.total_amount)
         self.cart.save()
 
     def delete(self, *args, **kwargs):
         super(CartProduct, self).delete(*args, **kwargs)
         self.cart.product_count -= 1
-        self.cart.total_amount -= self.total_amount
+        self.cart.total_amount = decimal.Decimal(self.cart.total_amount) - decimal.Decimal(self.total_amount)
         self.cart.save()
