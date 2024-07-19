@@ -4,6 +4,7 @@ from django.views.generic import View
 from django.contrib.auth import logout, login
 from django.contrib import messages
 from identity import forms as IdentityForms
+from identity import models as IdentityModels
 
 class LoginView(View):
     template_name = "identity/login.html"
@@ -49,3 +50,23 @@ class SignUpView(View):
 def LogoutView(request):
     logout(request)
     return redirect(reverse_lazy("identity:login"))
+
+def AccountTypeToggleView(request):
+    # user must be logged in
+    if not request.user.is_authenticated:
+        return redirect(reverse_lazy("identity:login"))
+    
+    user = IdentityModels.User.objects.filter(pk=request.user.pk)
+    if not user:
+        logout(request)
+        return redirect(reverse_lazy("identity:login"))
+    
+    user = user.first()
+
+    if user.account_type == "BUYER":
+        user.account_type = "SELLER"
+    else:
+        user.account_type = "BUYER"
+
+    user.save()
+    return redirect(reverse_lazy("shop:home"))

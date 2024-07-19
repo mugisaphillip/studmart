@@ -8,6 +8,7 @@ class ShopRouteTestCase(TestCase):
         self.client = Client()
 
     def test_login(self):
+        # user must be logged out
         response = self.client.get(reverse("identity:login"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed("identity/login.html")

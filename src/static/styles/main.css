@@ -1,3 +1,12 @@
+.nav-drop {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 100;
+}
+.nav-drop.show {display: grid;}
+
 .btn {
     box-shadow: 5px 5px 1px rgba(22, 8, 8, 0.5);   
 }
@@ -146,6 +155,25 @@
     inline-size: 100%;
     aspect-ratio: 1/1;
     object-fit: cover;
+}
+
+.modal {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    box-shadow: 1px 2px 2px rgba(26, 25, 25, 0.863);
+    animation: modal-enter .5s;
+    background-color: white;
+}
+.modal.show {
+    display: grid;
+}
+
+@keyframes modal-enter {
+    0% {top: -20%;}
+    100% {top: 20%;}
 }
 
 @media screen and (max-width: 900px) {

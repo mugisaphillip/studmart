@@ -5,7 +5,7 @@ from shop import models as ShopModels
 from identity import models as IdentityModels
 from django.db.models import Q
 from django.contrib import messages
-import random
+import random, decimal
 
 
 def error_404_view(request):
@@ -198,7 +198,7 @@ class BusinessDetailView(View):
         ]
         return render(request, template_name=self.template_name, context=self.context_data)
     
-class CartView(View):
+class CartOrdersView(View):
     template_name = "shop/cart.html"
     context_data = {}
 
@@ -217,6 +217,7 @@ class CartView(View):
         else:
             cart = cart.first()
 
+
         self.context_data["cart"] = cart
         # pass cart products
         self.context_data["cart_products"] = [
@@ -225,7 +226,46 @@ class CartView(View):
                 "image": ShopModels.ProductImage.objects.filter(product=cart_link.product).first()
             } for cart_link in cart.cartproduct_set.all()
         ]
+
+        # pass orders
+        orders = ShopModels.Order.objects.filter(buyer=request.user)
+
+        total_amount = 0
+        for order in orders:
+            total_amount = decimal.Decimal(total_amount) + order.total_amount
+
+        self.context_data["orders"] = {
+            "total_amount": total_amount,
+            "orders": [
+                {
+                    "order": order,
+                    "image": ShopModels.ProductImage.objects.filter(product=order.product).first()
+                } for order in orders
+            ]
+        }
+
         return render(request, template_name=self.template_name, context=self.context_data)
+    
+class CartToOrderView(View):
+    template_name = "shop/cart.html"
+    context_data = {}
+
+    def post(self, request):
+        # user must be logged in
+        if not request.user.is_authenticated:
+            return redirect(reverse_lazy("identity:login"))
+        
+        # if user has no cart, show an error message
+        cart = ShopModels.Cart.objects.filter(user=request.user)
+        if not cart:
+            messages.add_message(request, messages.ERROR, "Product not in cart.")
+            return redirect(reverse_lazy("shop:cart"))
+        cart = cart.first()
+
+        # convert cart items to order and notify sellers
+        cart.place_order()
+        messages.add_message(request, messages.SUCCESS, "Order(s) placed successfully.")
+        return redirect(reverse_lazy("shop:cart"))
     
 class AddProductToCartView(View):
     template_name = "shop/cart.html"
@@ -242,6 +282,11 @@ class AddProductToCartView(View):
             return redirect(reverse_lazy("shop:error-page"))
 
         product = product.first()
+
+        # user cannot add his own products to his cart
+        if product.business.owner == request.user:
+            messages.add_message(request, messages.ERROR, "You cannot buy from your shop.")
+            return redirect(reverse_lazy("shop:product-list"))
 
         # get existing cart and add item
         # if user has no cart, create a new cart
@@ -266,4 +311,39 @@ class AddProductToCartView(View):
             product = product
         )
         
+        return redirect(reverse_lazy("shop:cart"))
+
+
+class DeleteProductToCartView(View):
+    template_name = "shop/cart.html"
+    context_data = {}
+
+    def post(self, request, slug):
+
+        # user must be logged in
+        if not request.user.is_authenticated:
+            return redirect(reverse_lazy("identity:login"))
+
+        product = ShopModels.Product.objects.filter(slug=slug)
+        if not product:
+            return redirect(reverse_lazy("shop:error-page"))
+        product = product.first()
+
+        # get existing cart and add item
+        # if user has no cart, create a new cart
+
+        cart = ShopModels.Cart.objects.filter(user=request.user)
+        if not cart:
+            messages.add_message(request, messages.ERROR, "Product not in cart.")
+            return redirect(reverse_lazy("shop:cart"))
+        cart = cart.first()
+
+        # check if product is in cart\
+        cart_link = ShopModels.CartProduct.objects.filter(cart = cart,product = product)
+        if not cart_link:
+            messages.add_message(request, messages.ERROR, "Product not in cart.")
+            return redirect(reverse_lazy("shop:cart"))
+        
+        # remove product from cart
+        cart_link.first().delete()
         return redirect(reverse_lazy("shop:cart"))

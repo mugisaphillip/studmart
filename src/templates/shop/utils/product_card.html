@@ -16,7 +16,7 @@
             <p class="">UGX {{product.product.price}}</p>
             <a href="" class="" class="text-sm">{{product.product.category.name}}</p>
         </div>
-        <a href="" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
+        <a href="{% url 'shop:add-to-cart' product.product.slug %}" class="text-xl"><i class="fa fa-shopping-cart"></i></a>
     </div>
 </article>
 {% endblock %}

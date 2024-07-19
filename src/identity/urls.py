@@ -6,5 +6,7 @@ app_name = "identity"
 urlpatterns = [
     path("login/", IdentityViews.LoginView.as_view(), name="login"),
     path("signup/", IdentityViews.SignUpView.as_view(), name="signup"),
-    path("logout/", IdentityViews.LogoutView, name="logout")
+    path("logout/", IdentityViews.LogoutView, name="logout"),
+
+    path("accounttype/", IdentityViews.AccountTypeToggleView, name="account-type-toggle")
 ]

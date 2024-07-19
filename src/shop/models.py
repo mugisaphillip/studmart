@@ -113,6 +113,7 @@ class Order(models.Model):
     buyer = models.ForeignKey(to=IdentityModels.User, on_delete=models.CASCADE, null=False, blank=False)
     product = models.ForeignKey(to=Product, on_delete=models.CASCADE, null=False, blank=False)
     quantity = models.IntegerField(verbose_name="quantity", default=1)
+    total_amount = models.DecimalField(verbose_name="total amount", decimal_places=2, max_digits=10)
     status = models.CharField(verbose_name="status", choices=order_status, default="PENDING", max_length=100)
     created_on = models.DateField("Created on", default=timezone.now)
     completed_on = models.DateField("Completed on", null=True, blank=True)
@@ -131,7 +132,8 @@ class Cart(models.Model):
             order = Order.objects.create(
                 buyer = self.user,
                 product = product.product,
-                quantity = product.quantity
+                quantity = product.quantity,
+                total_amount = product.product.price * product.quantity
             )
             orders.append(order)
 

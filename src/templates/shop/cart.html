@@ -19,10 +19,10 @@
                         <a href="{% url 'shop:product-details' cart_rel.product.product.slug %}" class="text-gray-950 text-lg font-semibold">{{ cart_rel.product.product.name }}</a>
                         <span class="text-gray-950">UGX {{ cart_rel.product.total_amount }}</span>
                         <span class="text-gray-950">{{ cart_rel.product.quantity }} Piece(s)</span>
-                        <a href="" class="grid grid-flow-col gap-2 text-red-700 justify-start">
+                        <button class="trigger-modal-cta cursor-pointer grid grid-flow-col gap-2 text-red-700 justify-start" data-link="{% url 'shop:remove-from-cart' cart_rel.product.product.slug %}">
                             <span><i class="fa fa-trash"></i></span>
                             <span>Remove</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
                 {% endfor %}
@@ -31,30 +31,37 @@
             {% endif %}
         </div>
         {% if cart_products %}
-        <a href="" class="py-2 px-4 text-base grid place-items-center text-slate-50 bg-gray-950 justify-self-start">Place order</a>
+        <button data-link="{% url 'shop:cart-to-order' %}" class="trigger-modal-cta cursor-pointer py-2 px-4 text-base grid place-items-center text-slate-50 bg-gray-950 justify-self-start">Place order</button>
         {% endif %}
     </section>
 
+    {% if orders.orders %}
     <section class="w-11/12 grid gap-4">
         <div class="grid grid-flow-col justify-between items-center gap-4">
             <h3 class="text-gray-950 text-xl font-semibold">Your Current Orders</h3>
-            <span>Total: UGX 1000000</span>
+            <span>Total: UGX {{ orders.total_amount }}</span>
         </div>
         <div class="grid gap-4 md:grid-cols-3 sm:grid-cols-1">
+            {% for order in orders.orders %}
             <div class="cart-product-card">
                 <div class="img-wrapper">
-                    <img src="http://localhost:8000/media/ProductImage/images/Suit_Rental-e60e5dc7-5fa8-4f43-8f74-53ef0031285f.jpg" alt="">
+                    <img src="/media/{{ order.image.image }}" alt="">
                 </div>
-                <div class="brief grid content-start">
-                    <h3 class="text-gray-950 text-lg font-semibold">Product Name</h3>
-                    <span class="text-gray-950">5 Pieces</span>
-                    <span class="text-gray-950">UGX 400000</span>
-                    <span class="text-gray-950 text-sm">Added On: 10/3/2002</span>
-                    <span class="text-gray-950 text-sm">Status: Accepted</span>
+                <div class="brief grid gap-1 content-start">
+                    <h3 class="text-gray-950 text-lg font-semibold">{{ order.order.product.name }}</h3>
+                    <div class="grid grid-flow-col justify-start gap-2 items-center">
+                        <span class="text-gray-950">UGX {{ order.order.total_amount }}</span>
+                        <span>-</span>
+                        <span class="text-gray-950 text-sm">{{ order.order.quantity }} Piece(s)</span>
+                    </div>
+                    <span class="text-gray-950 text-sm">Added On: {{ order.order.created_on }}</span>
+                    <span class="text-gray-950 text-sm">Status: <span class="font-semibold">{{ order.order.status }}</span></span>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </section>
+    {% endif %}
 
 </main>
 {% endblock %}
