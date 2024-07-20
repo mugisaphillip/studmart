@@ -1,0 +1,21 @@
+{% extends '../../utils/layout.html' %}
+{% load static %}
+{% block content %}
+<main class="bg-white grid justify-items-center gap-4 py-5">
+
+    {% include "./utils/nav.html" %}
+    
+    <section class="border border-solid border-gray-100 w-11/12" style="height: 75vh;">
+        <div class="grid gap-4 p-4">
+            <h2 class="text-gray-950 text-xl font-bold text-left">Edit your profile</h2>
+            <hr style="border: px solid lightgray">
+            <form action="{% url 'shop:seller-dashboard-profile' %}" method="POST" class="grid gap-4 grid-cols-2"  enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" class="py-2 px-2 text-base grid place-items-center text-slate-50 bg-gray-950 hover:bg-gray-900 transition-colors duration-200 ease-in-out" value="Save">
+            </form>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

@@ -7,6 +7,11 @@ class AdminSignUpForm(UserCreationForm):
         model = IdentityModels.User
         fields = ("username",)
 
+class ProfileForm(ModelForm):
+    class Meta:
+        model = IdentityModels.User
+        fields = ("email","surname","first_name","tel_number","isdelivery","account_type","institution","image",)
+
 
 class AdminSignInForm(AuthenticationForm):
     class Meta:

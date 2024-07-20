@@ -19,4 +19,9 @@ urlpatterns = [
 
     path('businesses/', ShopViews.BusinessListView.as_view(), name="business-list"),
     path('business/<str:slug>/', ShopViews.BusinessDetailView.as_view(), name="business-details"),
+
+    path("seller/dashboard/", ShopViews.SellerDashboard.as_view(), name="seller-dashboard"),
+    path("seller/dashboard/business", ShopViews.SellerDashboardBusiness.as_view(), name="seller-dashboard-businesses"),
+    path("seller/dashboard/products", ShopViews.SellerDashboardProducts.as_view(), name="seller-dashboard-products"),
+    path("seller/dashboard/profile", ShopViews.SellerDashboardProfile.as_view(), name="seller-dashboard-profile"),
 ]

@@ -1,0 +1,52 @@
+{% extends '../../utils/layout.html' %}
+{% load static %}
+{% block content %}
+<main class="bg-white grid justify-items-center gap-4 py-5">
+
+    {% include "./utils/nav.html" %}
+    
+    <section class="border border-solid border-gray-100 w-11/12" style="height: 75vh;">
+        <table class="border-collapse w-full">
+            <thead>
+                <tr>
+                    <th class="border border-solid border-gray-400 px-4 py-2 text-left">No.</th>
+                    <th class="border border-solid border-gray-400 px-4 py-2 text-left">Product</th>
+                    <th class="border border-solid border-gray-400 px-4 py-2 text-left">Quantity</th>
+                    <th class="border border-solid border-gray-400 px-4 py-2 text-left">Cost</th>
+                    <th class="border border-solid border-gray-400 px-4 py-2 text-left">Buyer</th>
+                    <th class="border border-solid border-gray-400 px-4 py-2 text-left">Buyer telNo.</th>
+                    <th class="border border-solid border-gray-400 px-4 py-2 text-left">Status</th>
+                    <th class="border border-solid border-gray-400 px-4 py-2 text-left">Accept/Complete</th>
+                    <th class="border border-solid border-gray-400 px-4 py-2 text-left">Decline</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td class="border border-solid border-gray-400 px-4 py-2 text-left">{{ forloop.counter }}</td>
+                    <td class="border border-solid border-gray-400 px-4 py-2 text-left">{{ order.product.name }}</td>
+                    <td class="border border-solid border-gray-400 px-4 py-2 text-left">{{ order.quantity }}</td>
+                    <td class="border border-solid border-gray-400 px-4 py-2 text-left">{{ order.total_amount }}</td>
+                    <td class="border border-solid border-gray-400 px-4 py-2 text-left">{{ order.buyer.username }}</td>
+                    <td class="border border-solid border-gray-400 px-4 py-2 text-left">{{ order.buyer.tel_number }}</td>
+                    <td class="border border-solid border-gray-400 px-4 py-2 text-left">{{ order.status }}</td>
+                    <td class="border border-solid border-gray-400 px-4 py-2">
+                        {% if order.status == "PENDING" %}
+                        <button class="py-1 px-6 bg-green-800 text-slate-50 text-base">Accept</button>
+                        {% else %}
+                        <span class="py-1 px-6 bg-gray-800 text-slate-50 text-base">Complete</span>
+                        {% endif %}
+                    </td>
+                    <td class="border border-solid border-gray-400 px-4 py-2 text-left">
+                        {% if order.status == "PENDING" %}
+                        <button class="py-1 px-6 bg-red-900 text-slate-50 text-base">Decline</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+</main>
+{% endblock %}

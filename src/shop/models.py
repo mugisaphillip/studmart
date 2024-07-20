@@ -49,7 +49,7 @@ class Category(models.Model):
     business_count = models.IntegerField(verbose_name="Product count", default=0)
 
     def __str__(self) -> str:
-        return f'{self.name}. Products:{self.product_count} Businesses: {self.business_count}'
+        return self.name
 
 class BusinessCategory(models.Model):
     business = models.ForeignKey(to=Business, on_delete=models.CASCADE, null=False, blank=False)

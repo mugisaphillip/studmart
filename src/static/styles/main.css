@@ -1,11 +1,33 @@
-.nav-drop {
+.nav-drop,
+#mb-nav {
     display: none;
     position: absolute;
     right: 0;
     top: 100%;
     z-index: 100;
 }
-.nav-drop.show {display: grid;}
+#mb-nav {
+    /* display: grid; */
+    top: 110%;
+    right: -5%;
+    animation: nav-enter .5s;
+    width: 100vw;
+}
+#mb-nav.search > * {
+    display: none;
+}
+#mb-nav.search form {
+    display: grid;
+}
+#mb-nav:not(.search) form {
+    display: none;
+}
+
+@keyframes nav-enter {
+    0% {right: -100%}
+    100% {right: -5%}
+}
+.nav-drop.show, #mb-nav.show {display: grid;}
 
 .btn {
     box-shadow: 5px 5px 1px rgba(22, 8, 8, 0.5);   
@@ -127,22 +149,46 @@
     box-shadow: 10px 10px 0px rgba(3, 7, 18, 0.863);
     transition: all .3s ease-in-out;
 }
-.auth-area form > p {
+form > p {
     display: grid;
     gap: .5rem;
 }
 
-.auth-area form input:not([type="submit"]) {
+form > p:has(select),
+form > p:has(input[type="checkbox"]),
+form > p:has(input[type="file"]) {
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+form > p:has(input[type="file"]) a {
+    display: none;
+}
+
+form select {
     border: 1px solid #030712;
     padding: .25rem .5rem;
 }
 
-.auth-area form input[type="submit"] {
+
+form input:not([type="submit"]):not([type="file"]), 
+form textarea{
+    border: 1px solid #030712;
+    padding: .25rem .5rem;
+}
+
+form input[type="submit"] {
     box-shadow: none;
     transition: all .3s ease-in-out;
 }
-.auth-area form input[type="submit"]:hover {
+form input[type="submit"]:hover {
     box-shadow: none;
+}
+
+nav form input {
+    border: none;
+    border-color: transparent;
+    outline: transparent;
 }
 .cart-product-card {
     display: grid;
@@ -164,7 +210,7 @@
     left: 50%;
     transform: translate(-50%, -20%);
     box-shadow: 1px 2px 2px rgba(26, 25, 25, 0.863);
-    animation: modal-enter .5s;
+    animation: modal-enter .3s;
     background-color: white;
 }
 .modal.show {
@@ -182,11 +228,16 @@
         inline-size: 15vw;
     }
     .product-card {
-        inline-size: 90vw;
+        inline-size: 45vw;
     }
-    
     .business-card {
-        inline-size: 50vw;
+        inline-size: 40vw;
+    }
+    .horizontal-scroller .business-card {
+        inline-size: 45vw;
+    }
+    .dashboard .business-card {
+        inline-size: 30vw;
     }
 
     .product_details {
@@ -207,6 +258,8 @@
         grid-auto-flow: row;
     }
     .filters > div {
+        padding-block-end: 1rem;
+        padding-inline-end: 1rem;
         width: 90vw;
         overflow-x: auto;
         align-items: flex-start;

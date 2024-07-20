@@ -1,0 +1,31 @@
+{% extends '../../utils/layout.html' %}
+{% load static %}
+{% block content %}
+<main class="bg-white grid justify-items-center gap-4 py-5">
+
+    {% include "./utils/nav.html" %}
+    
+    <section class="border border-solid border-gray-100 w-11/12">
+        <div style="display: grid;grid-template-columns: 2fr 1fr;" class=" gap-6">
+            <div class="dashboard grid grid-cols-3 justify-start gap-4 justify-items-start items-start">
+                {% for product in products %}
+                {% include "../utils/product_card.html" with product=product %}
+                {% endfor %}
+            </div>
+            <div class="grid gap-2 p-2 bg-slate-50 items-start content-start h-full">
+                <h3 class="capitalize font-semibold text-lg">Create a new product</h3>
+                <form action="{% url 'shop:seller-dashboard-products' %}" class="grid gap-4" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <p class="grid grid-flow-col gap-1 items-center">
+                        <label for="images">Images:</label>
+                        <input type="file" name="images" id="images" multiple>
+                    </p>
+                    <input type="submit" class="cursor-pointer py-2 px-4 text-base grid place-items-center text-slate-50 bg-gray-950 justify-self-start" value="Create">
+                </form>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

@@ -5,8 +5,8 @@
 
     <section class="w-11/12 grid gap-6">
         <div class="grid grid-flow-col justify-between items-center gap-4">
-            <h3 class="text-gray-950 text-xl font-semibold">Your Cart</h3>
-            <span>Total: UGX {{ cart.total_amount }}</span>
+            <h3 class="text-gray-950 text-lg font-semibold">Your Cart</h3>
+            <span class="text-sm">Total: UGX {{ cart.total_amount }}</span>
         </div>
         <div class="grid gap-4 md:grid-cols-3 sm:grid-cols-1">
             {% if cart_products %}
@@ -16,7 +16,7 @@
                         <img src="/media/{{ cart_rel.image.image }}" alt="">
                     </div>
                     <div class="brief grid content-start py-2">
-                        <a href="{% url 'shop:product-details' cart_rel.product.product.slug %}" class="text-gray-950 text-lg font-semibold">{{ cart_rel.product.product.name }}</a>
+                        <a href="{% url 'shop:product-details' cart_rel.product.product.slug %}" class="text-gray-950 text-base font-semibold">{{ cart_rel.product.product.name }}</a>
                         <span class="text-gray-950">UGX {{ cart_rel.product.total_amount }}</span>
                         <span class="text-gray-950">{{ cart_rel.product.quantity }} Piece(s)</span>
                         <button class="trigger-modal-cta cursor-pointer grid grid-flow-col gap-2 text-red-700 justify-start" data-link="{% url 'shop:remove-from-cart' cart_rel.product.product.slug %}">
@@ -27,7 +27,7 @@
                 </div>
                 {% endfor %}
             {% else %}
-                <p>No product in cart</p>
+                <p>No products in cart</p>
             {% endif %}
         </div>
         {% if cart_products %}
@@ -38,8 +38,8 @@
     {% if orders.orders %}
     <section class="w-11/12 grid gap-4">
         <div class="grid grid-flow-col justify-between items-center gap-4">
-            <h3 class="text-gray-950 text-xl font-semibold">Your Current Orders</h3>
-            <span>Total: UGX {{ orders.total_amount }}</span>
+            <h3 class="text-gray-950 text-lg font-semibold">Your Orders</h3>
+            <span class="text-sm">Total: UGX {{ orders.total_amount }}</span>
         </div>
         <div class="grid gap-4 md:grid-cols-3 sm:grid-cols-1">
             {% for order in orders.orders %}
@@ -47,13 +47,10 @@
                 <div class="img-wrapper">
                     <img src="/media/{{ order.image.image }}" alt="">
                 </div>
-                <div class="brief grid gap-1 content-start">
-                    <h3 class="text-gray-950 text-lg font-semibold">{{ order.order.product.name }}</h3>
-                    <div class="grid grid-flow-col justify-start gap-2 items-center">
-                        <span class="text-gray-950">UGX {{ order.order.total_amount }}</span>
-                        <span>-</span>
-                        <span class="text-gray-950 text-sm">{{ order.order.quantity }} Piece(s)</span>
-                    </div>
+                <div class="brief grid gap-0 content-start">
+                    <h3 class="text-gray-950 text-base font-semibold">{{ order.order.product.name }}</h3>
+                    <span class="text-gray-950">UGX {{ order.order.total_amount }}</span>
+                    <span class="text-gray-950 text-sm">{{ order.order.quantity }} Piece(s)</span>
                     <span class="text-gray-950 text-sm">Added On: {{ order.order.created_on }}</span>
                     <span class="text-gray-950 text-sm">Status: <span class="font-semibold">{{ order.order.status }}</span></span>
                 </div>

@@ -13,14 +13,14 @@
                 {% for category in categories %}
                 <a href="{% url 'shop:business-list' %}?category={{category.name}}" class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">{{ category.name }}({{ category.business_count }})</a>
                 {% endfor %}
-                <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">More</button>
+                <!-- <button class="btn with-drop py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">More</button> -->
             </div>
         </div>
         <div class="grid">
             <!-- <button><i class="fa fa-arrow-left"></i></button> -->
-            <div class="grid grid-cols-5 justify-start gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-5 justify-start gap-2 md:gap-6">
                 {% for business in businesses %}
-                {% include "./utils/business_card.html" with product=product %}
+                {% include "./utils/business_card.html" with business=business %}
                 {% endfor %}
             </div>
             <!-- <button><i class="fa fa-arrow-right"></i></button> -->

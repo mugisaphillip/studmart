@@ -6,6 +6,10 @@ from identity import models as IdentityModels
 from django.db.models import Q
 from django.contrib import messages
 import random, decimal
+from shop import forms as ShopForms
+from shop.mixins import SellerOnlyAccessMixin
+
+from identity.forms import ProfileForm
 
 
 def error_404_view(request):
@@ -228,7 +232,7 @@ class CartOrdersView(View):
         ]
 
         # pass orders
-        orders = ShopModels.Order.objects.filter(buyer=request.user)
+        orders = ShopModels.Order.objects.filter(buyer=request.user).order_by("-id")
 
         total_amount = 0
         for order in orders:
@@ -346,4 +350,91 @@ class DeleteProductToCartView(View):
         
         # remove product from cart
         cart_link.first().delete()
-        return redirect(reverse_lazy("shop:cart"))
+        return redirect(reverse_lazy("shop:cart"))    
+
+class SellerDashboard(SellerOnlyAccessMixin, View):
+    template_name = "shop/seller/dashboard.html"
+    context_data = {}
+
+    def get(self, request):
+        self.context_data["orders"] = ShopModels.Order.objects.filter(product__business__owner=request.user)
+        
+        return render(request, template_name=self.template_name, context=self.context_data)
+
+class SellerDashboardBusiness(SellerOnlyAccessMixin, View):
+    template_name = "shop/seller/businesses.html"
+    context_data = {}
+
+    def get(self, request):
+        self.context_data["businesses"] = [
+            {
+                "business": business,
+                'categories': [ category.category for category in ShopModels.BusinessCategory.objects.filter(business=business) ]
+            } for business in (
+                    lambda business: random.sample(business, len(business))
+                )(list(ShopModels.Business.objects.filter(owner=request.user)))
+        ]
+        self.context_data["form"] = ShopForms.BusinessForm()
+        
+        return render(request, template_name=self.template_name, context=self.context_data)
+    
+    def post(self, request):
+        
+        form = ShopForms.BusinessForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            messages.add_message(request, messages.ERROR, "Error creating business.")
+
+        return redirect(reverse_lazy("shop:seller-dashboard-businesses"))   
+    
+
+class SellerDashboardProducts(SellerOnlyAccessMixin, View):
+    template_name = "shop/seller/products.html"
+    context_data = {}
+
+    def get(self, request):
+        
+        self.context_data["products"] = [
+            {
+                "product": product,
+                "images": ShopModels.ProductImage.objects.filter(product=product)[:2]
+            } for product in (
+                    lambda products: random.sample(products, len(products))
+                )(list(ShopModels.Product.objects.filter(business__owner=request.user)))[:15]
+        ]
+        self.context_data["form"] = ShopForms.ProductForm()
+        
+        return render(request, template_name=self.template_name, context=self.context_data)
+    
+    def post(self, request):
+        form = ShopForms.ProductForm(request.POST)
+        if form.is_valid():
+            product = form.save()
+
+            # save images
+            for image in request.FILES.getlist("images"):
+                ShopModels.ProductImage.objects.create(product=product, image=image)
+        else:
+            messages.add_message(request, messages.ERROR, "Error Uploading product.")
+
+        return redirect(reverse_lazy("shop:seller-dashboard-products"))
+    
+
+class SellerDashboardProfile(SellerOnlyAccessMixin, View):
+    template_name = "shop/seller/profile.html"
+    context_data = {}
+
+    def get(self, request):
+        self.context_data["form"] = ProfileForm(instance=request.user)
+        
+        return render(request, template_name=self.template_name, context=self.context_data)
+    
+    def post(self, request):
+        form = ProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+        else:
+            messages.add_message(request, messages.ERROR, "Error editing profile.")
+
+        return redirect(reverse_lazy("shop:seller-dashboard-profile"))   

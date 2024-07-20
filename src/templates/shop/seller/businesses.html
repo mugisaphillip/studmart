@@ -1,0 +1,27 @@
+{% extends '../../utils/layout.html' %}
+{% load static %}
+{% block content %}
+<main class="bg-white grid justify-items-center gap-4 py-5">
+
+    {% include "./utils/nav.html" %}
+    
+    <section class="border border-solid border-gray-100 w-11/12">
+        <div style="display: grid;grid-template-columns: 2fr 1fr;" class=" gap-6">
+            <div class="dashboard grid grid-cols-3 justify-start gap-4 justify-items-start">
+                {% for business in businesses %}
+                {% include "../utils/business_card.html" with product=product %}
+                {% endfor %}
+            </div>
+            <div class="grid gap-2 p-2 bg-slate-50 items-start content-start h-full">
+                <h3 class="capitalize font-semibold text-lg">Create a new business</h3>
+                <form action="{% url 'shop:seller-dashboard-businesses' %}" class="grid gap-2" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="cursor-pointer py-2 px-4 text-base grid place-items-center text-slate-50 bg-gray-950 justify-self-start" value="Create">
+                </form>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

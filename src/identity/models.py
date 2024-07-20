@@ -19,6 +19,7 @@ class User(AbstractUser):
     )
 
     surname = models.CharField(verbose_name="Surname", max_length=256)
+    tel_number = models.CharField(verbose_name="Tel number", max_length=256, null=True, blank=True)
     isdelivery = models.BooleanField(verbose_name="Is a delivery agent", default=False)
     account_type = models.CharField(verbose_name="account type", choices=account_types, default="BUYER", max_length=100)
     institution = models.ForeignKey(to="Institution", on_delete=models.SET_NULL, null=True, blank=True)
@@ -26,7 +27,7 @@ class User(AbstractUser):
     image = models.FileField(
         verbose_name="Image",
         upload_to=get_file_path,
-        default="User/user.png",
+        default="user/user.png",
     )
     
     def __str__(self):

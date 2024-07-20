@@ -8,12 +8,12 @@
     </div>
     <div class="brief grid grid-flow-col justify-between items-center px-2 text-gray-950">
         <div class="grid">
-            <h4 class="text-lg font-semibold">
+            <h4 class="text-base font-semibold">
                 <a href="{% url 'shop:business-details' business.business.slug %}">{{business.business.name}}</a>
             </h4>
             <p class="">{{business.categories.0.name}}</p>
         </div>
-        <a href=""><i class="fa fa-star"></i></a>
+        <!-- <a href=""><i class="fa fa-star"></i></a> -->
     </div>
 </article>
 {% endblock %}
