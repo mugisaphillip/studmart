@@ -1,6 +1,6 @@
 # studmart
 
-# Project Set Up
+# Project Set Up manually
 `bash
     git clone https://github.com/mugisaphillip/studmart.git
     cd studmart
@@ -15,12 +15,15 @@
 
 `bash
     source ./venv/bin/activate
-    pip install -r requirements.txt
     cd src
 `
 
 `python
+    pip install -r requirements.txt
     python manage.py makemigrations
     python manage.py migrate
     python manage.py loaddata ./.db.bak.json
+    python manage.py runserver 0.0.0.0:9090
 `
+
+# Project Set using bash script
