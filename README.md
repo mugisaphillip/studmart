@@ -27,3 +27,7 @@
 `
 
 # Project Set using bash script
+`bash
+    wget https://github.com/mugisaphillip/studmart/blob/main/setup.sh
+    ./setup.sh
+`
