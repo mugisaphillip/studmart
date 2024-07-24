@@ -1,6 +1,6 @@
 {% load static%}
 {% block content %}
-<article class="product-card grid gap-2 relative">
+<article class="product-card grid gap-2 relative content-start">
     <div class="img-wrapper">
         <a href="{% url 'shop:product-details' product.product.slug %}">
             {% for image in product.images %}
