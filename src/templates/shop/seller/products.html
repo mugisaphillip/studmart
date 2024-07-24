@@ -12,7 +12,7 @@
                 {% include "../utils/product_card.html" with product=product %}
                 {% endfor %}
             </div>
-            <div class="grid gap-2 p-2 bg-slate-50 items-start content-start h-full">
+            <div class="grid gap-2 p-2 bg-slate-50 items-start content-start h-full self-start" style="align-self: start;">
                 <h3 class="capitalize font-semibold text-lg">Create a new product</h3>
                 <form action="{% url 'shop:seller-dashboard-products' %}" class="grid gap-4" method="post" enctype="multipart/form-data">
                     {% csrf_token %}

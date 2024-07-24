@@ -32,14 +32,14 @@
                     <td class="border border-solid border-gray-400 px-4 py-2 text-left">{{ order.status }}</td>
                     <td class="border border-solid border-gray-400 px-4 py-2">
                         {% if order.status == "PENDING" %}
-                        <button class="py-1 px-6 bg-green-800 text-slate-50 text-base">Accept</button>
+                        <button data-link="{% url 'shop:seller-order-status' order.pk %}?status=ACCEPTED" class="trigger-modal-cta py-1 px-6 bg-green-800 text-slate-50 text-base">Accept</button>
                         {% else %}
-                        <span class="py-1 px-6 bg-gray-800 text-slate-50 text-base">Complete</span>
+                        <span data-link="{% url 'shop:seller-order-status' order.pk %}?status=COMPLETED" class="trigger-modal-cta py-1 px-6 bg-gray-800 text-slate-50 text-base">Complete</span>
                         {% endif %}
                     </td>
                     <td class="border border-solid border-gray-400 px-4 py-2 text-left">
                         {% if order.status == "PENDING" %}
-                        <button class="py-1 px-6 bg-red-900 text-slate-50 text-base">Decline</button>
+                        <button data-link="{% url 'shop:seller-order-status' order.pk %}?status=DECLINED" class="trigger-modal-cta py-1 px-6 bg-red-900 text-slate-50 text-base">Decline</button>
                         {% endif %}
                     </td>
                 </tr>

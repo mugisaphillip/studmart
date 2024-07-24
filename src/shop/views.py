@@ -375,15 +375,30 @@ class SellerDashboardBusiness(SellerOnlyAccessMixin, View):
                 )(list(ShopModels.Business.objects.filter(owner=request.user)))
         ]
         self.context_data["form"] = ShopForms.BusinessForm()
+        self.context_data["categories"] = ShopModels.Category.objects.all()
+        self.context_data["institutions"] = IdentityModels.Institution.objects.all()
         
         return render(request, template_name=self.template_name, context=self.context_data)
     
     def post(self, request):
-        
-        form = ShopForms.BusinessForm(request.POST)
+        form = ShopForms.BusinessForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            business = form.save(commit=False)
+            business.owner = request.user
+            business.save()
+
+            for category_pk in request.POST.getlist("categories"):
+                category =ShopModels.Category.objects.filter(pk=category_pk)
+                if category:
+                    ShopModels.BusinessCategory.objects.create(business=business, category=category.first())
+
+            for institution_pk in request.POST.getlist("institutions"):
+                institution = IdentityModels.Institution.objects.filter(pk=institution_pk)
+                if institution:
+                    ShopModels.BusinessInstitution.objects.create(business=business, institution=institution.first())
+
         else:
+            print(form.errors)
             messages.add_message(request, messages.ERROR, "Error creating business.")
 
         return redirect(reverse_lazy("shop:seller-dashboard-businesses"))   
@@ -403,7 +418,7 @@ class SellerDashboardProducts(SellerOnlyAccessMixin, View):
                     lambda products: random.sample(products, len(products))
                 )(list(ShopModels.Product.objects.filter(business__owner=request.user)))[:15]
         ]
-        self.context_data["form"] = ShopForms.ProductForm()
+        self.context_data["form"] = ShopForms.ProductForm(user=request.user)
         
         return render(request, template_name=self.template_name, context=self.context_data)
     
@@ -437,4 +452,19 @@ class SellerDashboardProfile(SellerOnlyAccessMixin, View):
         else:
             messages.add_message(request, messages.ERROR, "Error editing profile.")
 
-        return redirect(reverse_lazy("shop:seller-dashboard-profile"))   
+        return redirect(reverse_lazy("shop:seller-dashboard-profile"))
+    
+class SellerDashboardOrderStatus(SellerOnlyAccessMixin, View):
+    def post(self, request, pk):
+        # check if order belongs to user's business
+        order = ShopModels.Order.objects.filter(pk=pk, product__business__owner=request.user)
+        if not order:
+            messages.add_message(request, messages.ERROR, "Operation was blocked.")
+        else:
+            # get status selected by user
+            status = request.GET.get("status")
+            order = order.first()
+            order.status = status
+            order.save()
+            messages.add_message(request, messages.SUCCESS, "Order status updated.")
+        return redirect(reverse_lazy("shop:seller-dashboard"))

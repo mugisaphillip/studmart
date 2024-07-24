@@ -107,7 +107,8 @@ class Order(models.Model):
     order_status = (
         ("PENDING", "PENDING"),
         ("ACCEPTED", "ACCEPTED"),
-        ("COMPLETE", "COMPLETE"),
+        ("COMPLETED", "COMPLETED"),
+        ("DECLINED", "DECLINED"),
     )
 
     buyer = models.ForeignKey(to=IdentityModels.User, on_delete=models.CASCADE, null=False, blank=False)

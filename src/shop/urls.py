@@ -24,4 +24,5 @@ urlpatterns = [
     path("seller/dashboard/business", ShopViews.SellerDashboardBusiness.as_view(), name="seller-dashboard-businesses"),
     path("seller/dashboard/products", ShopViews.SellerDashboardProducts.as_view(), name="seller-dashboard-products"),
     path("seller/dashboard/profile", ShopViews.SellerDashboardProfile.as_view(), name="seller-dashboard-profile"),
+    path("seller/order/<int:pk>", ShopViews.SellerDashboardOrderStatus.as_view(), name="seller-order-status"),
 ]

@@ -17,3 +17,9 @@ class ProductForm(ModelForm):
         widgets = {
             'description': forms.Textarea(attrs={'rows': 3}),
         }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super(ProductForm, self).__init__(*args, **kwargs)
+        if user:
+            self.fields['business'].queryset = ShopModels.Business.objects.filter(owner=user)
