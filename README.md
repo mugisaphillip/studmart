@@ -3,7 +3,7 @@ A webapp which allows students and young people to create, manage and grow their
 
 Go ahead and have a look: [StudMart](http://studmart.mugisa.tech/)
 
-## Author and contributes
+## Authors and contributors
 - [Mugisa Phillip](https://github.com/mugisaphillip)
 
 ## Technologies Used
