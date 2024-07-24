@@ -1,0 +1,12 @@
+[Unit]
+Description=gunicorn daemon for studmart
+After=network.target
+
+[Service]
+user=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/studmart/src
+ExecStart=/home/ubuntu/studmart/src/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/studmart/src/myproject.sock core.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

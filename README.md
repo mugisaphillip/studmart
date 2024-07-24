@@ -28,6 +28,6 @@
 
 # Project Set using bash script
 `bash
-    wget https://github.com/mugisaphillip/studmart/blob/main/setup.sh
+    wget https://github.com/mugisaphillip/studmart/blob/main/prod/setup.sh
     ./setup.sh
 `

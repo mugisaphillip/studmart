@@ -1,0 +1,17 @@
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    location /static/ {                                                                                                                   location /static/ {
+            root /home/ubuntu/studmart/src;
+    }
+    location /media/ {
+            root /home/ubuntu/studmart/src;
+    }
+
+    location / {
+            include proxy_params;
+            proxy_pass http://unix:/home/ubuntu/studmart/src/myproject.sock;
+    }
+
+}
