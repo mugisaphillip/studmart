@@ -1,17 +1,21 @@
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
-    location /static/ {                                                                                                                   location /static/ {
-            root /home/ubuntu/studmart/src;
-    }
-    location /media/ {
-            root /home/ubuntu/studmart/src;
-    }
+        server_name studmart.mugisa.tech;
 
-    location / {
-            include proxy_params;
-            proxy_pass http://unix:/home/ubuntu/studmart/src/myproject.sock;
-    }
+        location /static/ {
+                root /home/ubuntu/studmart/src;
+        }
 
+        location /media/ {
+                root /home/ubuntu/studmart/src;
+        }
+
+        location / {
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_pass http://unix:/home/ubuntu/studmart/src/myproject.sock;
+        }
 }

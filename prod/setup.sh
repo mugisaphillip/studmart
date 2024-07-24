@@ -24,10 +24,10 @@ sudo mv ../prod/studmart /etc/nginx/sites-available/studmart
 sudo systemctl restart nginx
 
 # set gunicorn
-sudo mv ../prod/gunicorn.service sudo mv ../prod/gunicorn.service /etc/nginx/sites-available/studmart
+sudo mv ../prod/gunicorn.service /etc/systemd/system/gunicorn.service
 sudo systemctl start gunicorn
 sudo systemctl enable gunicorn
 sudo systemctl daemon-reload
 
-# run application
-python manage.py runserver 0.0.0.0:9090
+# # run application
+# python manage.py runserver 0.0.0.0:9090
