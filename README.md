@@ -1,7 +1,7 @@
 # studmart
 Studmart is a web application that allows students and young people to create, manage, and grow their businesses. The platform offers an online presence and advertisement for businesses across different institutions, hence breaking the barrier of distance. With countless products, a user-friendly interface, and quick search and filtering tools, users can  find products of their interest in a split second.
 
-Go ahead and have a look: [StudMart](http://studmart.mugisa.tech/)
+Go ahead and have a look: [StudMart](http://studmart.mugisa.tech/). Checkout the inspiration and background of StudMart: [Redefining student businesses in Africa.](https://medium.com/@phillipmugisa4/studmart-redefining-student-businesses-f6c37a897ce8)
 
 ## Authors and contributors
 - [Mugisa Phillip](https://github.com/mugisaphillip)
