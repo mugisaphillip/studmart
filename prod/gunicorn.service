@@ -6,7 +6,7 @@ After=network.target
 user=ubuntu
 Group=www-data
 WorkingDirectory=/home/ubuntu/studmart/src
-ExecStart=/home/ubuntu/studmart/src/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/studmart/src/myproject.sock core.wsgi:application
+ExecStart=/home/ubuntu/studmart/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/studmart/src/myproject.sock core.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
