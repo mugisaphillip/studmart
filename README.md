@@ -1,6 +1,8 @@
 # studmart
 A webapp which allows students and young people to create, manage and grow theirs business. The platform offers an online presence and advertisement for businesses access different institutions, hence breaking the barrier of distance. With countless products, user friendly interface and quick search and filtering tools, users are able to find products of their interest in a split second.
 
+Go ahead and have a look: [StudMart](http://studmart.mugisa.tech/)
+
 ## Technologies Used
 - Python (Django): The core of the platform is built using Django, a high-level Python web framework.
 - Vanilla Javascript
