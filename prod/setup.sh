@@ -1,9 +1,5 @@
 #usr/bin/env bash
 
-# clone project from github
-git clone https://github.com/mugisaphillip/studmart.git
-cd studmart
-
 # install python and nginx
 sudo apt update
 sudo apt install python3 -y

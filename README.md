@@ -31,5 +31,5 @@
     git clone https://github.com/mugisaphillip/studmart.git
     cd studmart
     chmod +x ./prod/setup.sh
-    ./setup.sh
+    ./prod/setup.sh
 `
