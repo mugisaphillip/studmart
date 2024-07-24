@@ -3,6 +3,9 @@ A webapp which allows students and young people to create, manage and grow their
 
 Go ahead and have a look: [StudMart](http://studmart.mugisa.tech/)
 
+## Author and contributes
+- [Mugisa Phillip](https://github.com/mugisaphillip)
+
 ## Technologies Used
 - Python (Django): The core of the platform is built using Django, a high-level Python web framework.
 - Vanilla Javascript
