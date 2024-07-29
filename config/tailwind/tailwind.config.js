@@ -4,7 +4,10 @@ module.exports = {
     "../../src/templates/**/*.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'hero': '0.7fr 1fr',
+      }},
   },
   plugins: [
     require('@tailwindcss/typography'),

@@ -55,6 +55,13 @@ class InstitutionDetails(View):
 
         return render(request, template_name=self.template_name, context=self.context_data)
 
+class LandingPageView(View):
+    template_name = "utils/landing.html"
+    context_data = {}
+
+    def get(self, request):
+        return render(request, template_name=self.template_name, context=self.context_data)
+
 class HomeView(View):
     template_name = "shop/index.html"
     context_data = {}

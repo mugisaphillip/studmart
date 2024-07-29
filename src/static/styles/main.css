@@ -1,3 +1,11 @@
+.hero {
+    position: relative;
+}
+
+/* .hero-img img {
+    block-size: 90vh;
+    aspect-ratio: 2/1;
+} */
 .nav-drop,
 #mb-nav {
     display: none;
@@ -223,6 +231,16 @@ nav form input {
 }
 
 @media screen and (max-width: 900px) {
+    .hero {
+        justify-content: center;
+        text-align: center;
+        gap: 2rem;
+        padding-block-start: 3rem;
+    }
+    .hero .brief {
+        justify-items: center;
+        text-align: center;
+    }
     .institution-card .img-wrapper {
         display: grid;
         inline-size: 15vw;

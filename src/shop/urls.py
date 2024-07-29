@@ -5,6 +5,7 @@ app_name = "shop"
 
 urlpatterns = [
     path('', ShopViews.HomeView.as_view(), name="home"),
+    path('landing/', ShopViews.LandingPageView.as_view(), name="landing"),
     path("404", ShopViews.error_404_view, name='error-page'),
     
     path('institution/<str:slug>/', ShopViews.InstitutionDetails.as_view(), name="institution-details"),
