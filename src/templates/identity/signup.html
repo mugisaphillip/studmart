@@ -1,5 +1,6 @@
 {% extends '../utils/layout.html' %}
 {% load static %}
+{% load socialaccount %}
 {% block content %}
 <main class="bg-white grid justify-items-center gap-6 py-5">
 
@@ -7,7 +8,7 @@
         <div class="bg-slate-50 grid gap-4 sm:w-full md:w-6/12 p-6 auth-area">
             <h2 class="text-gray-950 text-xl font-bold text-center">Sell and Buy Across All Institutions</h2>
             <hr style="border: px solid lightgray">
-            <a href="" class="grid grid-flow-col justify-center gap-2 cursor-pointer with-drop py-2 px-2 text-base place-items-center bg-white text-white" style="background-color: #4081EC;">
+            <a href="{% provider_login_url 'google' %}" class="grid grid-flow-col justify-center gap-2 cursor-pointer with-drop py-2 px-2 text-base place-items-center bg-white text-white" style="background-color: #4081EC;">
                 <span><i class="fa fa-google"></i></span>
                 <span>Continue With Google</span>
             </a>
