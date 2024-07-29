@@ -9,7 +9,7 @@ urlpatterns = [
     path("auth/", include("identity.urls", namespace="identity")),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('accounts/profile/', include("shop.urls", namespace="shop")),
+    path('accounts/profile/', include("shop.urls")),
 ]
 
 
