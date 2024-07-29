@@ -15,8 +15,8 @@
         <nav class="hidden md:grid gap-6 items-center w-11/12" style="grid-template-columns: 4fr 2fr;">
             <div class="grid gap-4 grid-flow-col justify-start">
                 <a href="{% url 'shop:home' %}" class="text-slate-50 text-2xl font-bold">studMart</a>
-                <a href="" class="py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">About Us</a>
-                <a href="" class="py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Contact Us</a>
+                <a href="#aboutus" class="py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">About Us</a>
+                <a href="#contactus" class="py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 ">Contact Us</a>
             </div>
             <div class="relative grid gap-2 grid-flow-col justify-end">
                 <a href="{% url 'shop:home' %}" class="py-1 px-2 text-base grid place-items-center bg-slate-50 text-gray-950 self-center">Vite Site</a>
@@ -31,8 +31,8 @@
                 </div>
             </div>
             <div id="mb-nav" class="grid absolute bg-gray-950 gap-2 p-4">
-                <a href="" class="py-2 px-4 text-base grid place-items-center bg-slate-50 text-gray-950 ">About </a>
-                <a href="" class="py-2 px-4 text-base grid place-items-center bg-slate-50 text-gray-950 ">Contact Us</a>
+                <a href="#aboutus" class="py-2 px-4 text-base grid place-items-center bg-slate-50 text-gray-950 ">About </a>
+                <a href="#contactus" class="py-2 px-4 text-base grid place-items-center bg-slate-50 text-gray-950 ">Contact Us</a>
                 <a href="{% url 'shop:home' %}" class="py-2 px-4 text-base grid place-items-center bg-slate-50 text-gray-950 ">Visit Site</a>
             </div>
         </nav>
@@ -61,7 +61,7 @@
             </picture>
         </section>
 
-        <section class="w-11/12 mx-auto grid gap-4">
+        <section id="aboutus" class="w-11/12 mx-auto grid gap-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-0">
                 <div class="grid justify-items-center">
                     <img src="{% static 'images/assets/studmart.jpeg' %}" alt="" class="w-full md:w-8/12">
@@ -85,7 +85,7 @@
         </section>
     </main>
 
-    <footer class="grid justify-items-center bg-gray-950 text-slate-50 content-center text-base mt-10" style="min-height: 10vh;">
+    <footer id="contactus" class="grid justify-items-center bg-gray-950 text-slate-50 content-center text-base mt-10" style="min-height: 10vh;">
         <section class="w-11/12 grid grid-flow-row md:grid-flow-col gap-2 md:gap-4 justify-center justify-items-center p-4">
             <span>Creater: Phillip Mugisa</span>
             <span class="flex items-center gap-2"><i class="fa fa-twitter"></i> <a href="https://x.com/PhillipMugisa04">@phillipmugisa04</a></span>
