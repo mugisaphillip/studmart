@@ -21,6 +21,7 @@ python manage.py loaddata ./.db.bak.json
 
 # set up nginx
 sudo mv ../prod/studmart /etc/nginx/sites-available/studmart
+sudo ln -s /etc/nginx/sites-available/studmart /etc/nginx/sites-enabled/studmart
 sudo systemctl restart nginx
 
 # set gunicorn
